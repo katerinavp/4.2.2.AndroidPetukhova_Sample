@@ -11,24 +11,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
-import com.example.a422androidpetukhova_sample.ItemData;
-import com.example.a422androidpetukhova_sample.ItemsDataAdapter;
-import com.example.a422androidpetukhova_sample.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Генератор случайностей
     private Random random = new Random();
-    // Наш адаптер
     private ItemsDataAdapter adapter;
-    // Список картинок, которые мы будем брать для нашего списка
     private List<Drawable> images = new ArrayList<>();
     private List<String> titles = new ArrayList<>();
     private List<String> subtitles = new ArrayList<>();
@@ -64,13 +56,10 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Тут мы получаем и отображаем данные,
-                // но можно сделать и перейти в новую активити с этими данными
                 showItemData(position);
             }
         });
 
-        // При долгом тапе по элементу списка будем удалять его
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -83,24 +72,19 @@ public class MainActivity extends AppCompatActivity {
     // Заполним различными картинками, которые встроены в сам Android
     // ContextCompat обеспечит нам поддержку старых версий Android
     private void fillImages() {
-//        images.add(ContextCompat.getDrawable(MainActivity.this,
-//                R.mipmap.ic_calendar));
-//        images.add(ContextCompat.getDrawable(MainActivity.this,
-//                R.mipmap.ic_notes));
-
-        images.add(0,ContextCompat.getDrawable(MainActivity.this,
+        images.add(0, ContextCompat.getDrawable(MainActivity.this,
                 R.mipmap.ic_calendar));
-        images.add(1,ContextCompat.getDrawable(MainActivity.this,
+        images.add(1, ContextCompat.getDrawable(MainActivity.this,
                 R.mipmap.ic_notes));
     }
 
     private void fillTitles() {
-        titles.add(  0,"Компоненты View.Иерархия Views");
-        titles.add( 1, "Компоненты View.Group, SharedPrefs");
+        titles.add(0, "Компоненты View.Иерархия Views");
+        titles.add(1, "Компоненты View.Group, SharedPrefs");
     }
 
     private void fillSubtitles() {
-        subtitles.add( 0,"Сроки сдачи");
+        subtitles.add(0, "Сроки сдачи");
         subtitles.add(1, "Записная книжка");
 
     }
@@ -112,12 +96,10 @@ public class MainActivity extends AppCompatActivity {
     private void generateItemData() {
 
         int randomIndex = random.nextInt(images.size());
-        adapter.addItem(new ItemData(images.get(randomIndex), titles.get(randomIndex), + adapter.getCount(),
+        adapter.addItem(new ItemData(images.get(randomIndex), titles.get(randomIndex), +adapter.getCount(),
                 subtitles.get(randomIndex)));
     }
 
-
-    // Покажем сообщение с данными
     private void showItemData(int position) {
         ItemData itemData = adapter.getItem(position);
         Toast.makeText(MainActivity.this,
@@ -125,4 +107,5 @@ public class MainActivity extends AppCompatActivity {
                         "Subtitle: " + itemData.getSubtitle() + "\n",
                 Toast.LENGTH_SHORT).show();
     }
+
 }

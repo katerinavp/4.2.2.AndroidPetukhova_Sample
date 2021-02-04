@@ -7,13 +7,11 @@ public class ItemData {
     private Drawable image;
     private String title;
     private String subtitle;
-   // private boolean checked;
 
     public ItemData(Drawable image, String title, int i, String subtitle) {
         this.image = image;
         this.title = title;
         this.subtitle = subtitle;
-        //this.checked = checked;
     }
 
 
@@ -29,11 +27,4 @@ public class ItemData {
         return subtitle;
     }
 
-//    public boolean isChecked() {
-//        return checked;
-//    }
-
-//    public void setChecked(boolean checked) {
-//        this.checked = checked;
-//    }
 }

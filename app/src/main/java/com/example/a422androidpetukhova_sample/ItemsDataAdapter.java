@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,7 +26,7 @@ class ItemsDataAdapter extends BaseAdapter {
 
     // Слушает все изменения галочки и меняет
     // состояние конкретного ItemData
-    private View.OnClickListener btnDeleteListener // изменяется когда нажимаем чекбокс, он один для всех
+    private View.OnClickListener btnDeleteListener
             = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -48,7 +47,7 @@ class ItemsDataAdapter extends BaseAdapter {
         } else {
             this.items = items;
         }
-        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); // для инфлейта наших данных используем инфлейтер
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     // Добавляет элемент в конец списка.
@@ -115,9 +114,8 @@ class ItemsDataAdapter extends BaseAdapter {
         image.setImageDrawable(itemData.getImage());
         title.setText(itemData.getTitle());
         subtitle.setText(itemData.getSubtitle());
-        btnDelete.setOnClickListener(btnDeleteListener); // один листенер для всех чебоксов
-        btnDelete.setTag(position); // с попощью данного метода передаем нашу позицию  в getTag.setChecked  и изменяем его состояние
-        // checkBox.setChecked(itemData.isChecked());
+        btnDelete.setOnClickListener(btnDeleteListener);
+        btnDelete.setTag(position);
 
         return view;
     }
